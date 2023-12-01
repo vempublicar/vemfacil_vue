@@ -28,6 +28,28 @@ const router = createRouter({
             meta: { requiresAuth: true },
             children: [
                 { path: 'home', component: () => import('@/components/dashboard/HomeDashboard.vue') },
+                { path: 'logout', component: () => import('@/components/public/LoginOut.vue')},
+                { 
+                    path: 'clients', 
+                    component: () => import('@/components/dashboard/ClientsDashboard.vue'),
+                    children: [
+                        // Rota filha para adicionar novos clientes
+                        { 
+                            path: 'new', 
+                            component: () => import('@/components/dashboard/clients/NewClient.vue') 
+                        },
+                        { 
+                            path: 'list', 
+                            component: () => import('@/components/dashboard/clients/ListClients.vue') 
+                        },
+                        { 
+                            path: '', 
+                            component: () => import('@/components/dashboard/clients/ListClients.vue') 
+                        },
+                        
+                        // outras rotas filhas de clients, se houver
+                    ]
+                },
                 // outras rotas do dashboard
             ]
         },

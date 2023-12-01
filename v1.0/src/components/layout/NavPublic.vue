@@ -1,6 +1,6 @@
 <template>
     <nav id="mainNav" class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light">
-        <div class="container">
+        <div class="container-fluid">
             <router-link class="navbar-brand d-flex align-items-center" to="/">
             <span>Brand</span>
             </router-link>

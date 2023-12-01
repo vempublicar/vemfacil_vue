@@ -48,6 +48,7 @@
 
 <script>
 import axios from "@/axios"; // Importa a instância do Axios configurada
+import { useStore } from 'vuex';
 
 export default {
     name: 'LoginUp',
@@ -58,6 +59,10 @@ export default {
             errorMessage: ''
         };
     },
+    setup() {
+        const store = useStore(); // Acessa a store Vuex
+        return { store };
+    },
     methods: {
         async loginUser() {
             try {
@@ -66,19 +71,16 @@ export default {
                     password: this.password
                 });
 
-                localStorage.setItem('jwt', response.data.jwt);
-                console.log('User profile', response.data.user);
+                // Despacha a ação loginUser para a store Vuex
+                this.store.dispatch('login', {
+                    user: response.data.user,
+                    jwt: response.data.jwt
+                });
+
+                // Redireciona para a página inicial do dashboard
                 this.$router.push('/dashboard/home');
             } catch (error) {
-                // Verifica se a resposta do erro contém uma mensagem específica
-                const errorMessage = error.response?.data?.message;
-                
-                if (errorMessage) {
-                    this.errorMessage = errorMessage;
-                } else {
-                    this.errorMessage = 'E-mail e/ou senha inválidos.';
-                }
-
+                this.errorMessage = 'E-mail e/ou senha inválidos.';
                 console.error("Login error: ", error.response);
             }
         },
@@ -94,6 +96,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

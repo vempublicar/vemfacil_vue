@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "pg": "^8.11.3"
+    "apexcharts": "^3.44.0",
+    "pg": "^8.11.3",
+    "vue3-apexcharts": "^1.4.4",
+    "vuex": "^4.0.2"
   }
 }

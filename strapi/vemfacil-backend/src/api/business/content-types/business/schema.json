@@ -15,9 +15,6 @@
       "type": "string",
       "required": true
     },
-    "id_business": {
-      "type": "uid"
-    },
     "business_cnpj_cpf": {
       "type": "string",
       "required": true,
@@ -41,6 +38,9 @@
       "multiple": false
     },
     "business_user_adm": {
+      "type": "integer"
+    },
+    "business_user_adm2": {
       "type": "integer"
     }
   }
